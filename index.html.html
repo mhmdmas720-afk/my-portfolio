@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد مسعود | مبرمج C++ وطلبة حاسبات</title>
+    <!-- Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* إعدادات الألوان والتصميم العام */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #10b981; /* أخضر مبرمجين عصري */
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* الهيدر ونظام التنقل */
+        header {
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* أقسام الموقع */
+        section {
+            padding: 5rem 2rem 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* قسم الترحيب (Hero) */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 90vh;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: #059669;
+        }
+
+        /* العناوين الفرعية */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* قسم المهارات */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: border-color 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* قسم المشاريع */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tags span {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* قسم التواصل */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+
+        .contact-btn.whatsapp:hover {
+            background-color: #25D366;
+            color: #fff;
+        }
+
+        .contact-btn.phone:hover {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        /* الفوتر */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #0b111e;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* التوافق مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <nav>
+            <div class="logo">&lt;M_MASOUD /&gt;</div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">عني</a></li>
+                <li><a href="#skills">المهارات</a></li>
+                <li><a href="#projects">المشاريع</a></li>
+                <li><a href="#contact">تواصل معي</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- قسم الترحيب -->
+    <section id="home" class="hero">
+        <h1>مرحباً، أنا <span>محمد مسعود</span></h1>
+        <p>طالب في كلية الحاسبات والمعلومات ومطور برمجيات شغوف بحل المشكلات وكتابة كود نظيف وبناء أنظمة قوية باستخدام لغة C++.</p>
+        <a href="#contact" class="btn">تواصل معي الآن</a>
+    </section>
+
+    <!-- قسم عني -->
+    <section id="about">
+        <h2 class="section-title">من أنا؟</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto; color: var(--text-muted);">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                أنا مبرمج وطالب في كلية الحاسبات، أركز جهودي في فهم علوم الحاسب الأساسية بشكل عميق. طريقي بدأ بالتعمق في لغة <strong>C++</strong> لأنها لغة الأداء العالي والتحكم الكامل في النظام.
+            </p>
+            <p style="font-size: 1.1rem;">
+                أسعى دائماً لتوظيف ما أتعلمه في الكلية لبناء تطبيقات واقعية وحلول برمجية مبتكرة، وهدفي هو التطور المستمر في مجال هندسة البرمجيات.
+            </p>
+        </div>
+    </section>
+
+    <!-- قسم المهارات -->
+    <section id="skills">
+        <h2 class="section-title">المهارات التقنية</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-solid fa-code"></i>
+                <h3>C++ Programming</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-sitemap"></i>
+                <h3>Data Structures</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-gears"></i>
+                <h3>Algorithms</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-cubes"></i>
+                <h3>OOP (Object Oriented)</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المشاريع -->
+    <section id="projects">
+        <h2 class="section-title">مشاريع برمجية</h2>
+        <div class="projects-grid">
+            
+            <!-- المشروع الأول -->
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>تطبيق شات عبر الشبكة (Socket Programming)</h3>
+                    <p>برنامج محادثة فوري مبني بالكامل بلغة C++ يعتمد على بروتوكول TCP/IP لربط السيرفر بالعملاء وتبادل الرسائل بكفاءة عالية وبشكل آمن.</p>
+                    <div class="tags">
+                        <span>C++</span>
+                        <span>Networking</span>
+                        <span>Sockets</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المشروع الثاني -->
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>نظام إدارة قواعد البيانات النصية</h3>
+                    <p>مشروع لتطبيق مفاهيم OOP وهياكل البيانات (Data Structures) لتخزين، وتعديل، والبحث في بيانات الطلاب أو المستخدمين من خلال ملفات نصية كقاعدة بيانات مخصصة.</p>
+                    <div class="tags">
+                        <span>C++</span>
+                        <span>OOP</span>
+                        <span>File Handling</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section id="contact">
+        <h2 class="section-title">تواصل معي</h2>
+        <div class="contact-container">
+            <p style="color: var(--text-muted); text-align: center;">إذا كنت تريد العمل معي على مشروع أو لديك أي استفسار، يسعدني تواصلك جداً عبر الوسائل التالية:</p>
+            
+            <div class="contact-buttons">
+                <!-- رابط الواتساب المباشر المُعدّل -->
+                <a href="https://wa.me/201550406683" target="_blank" class="contact-btn whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    واتساب: 01550406683
+                </a>
+                
+                <!-- رقم الاتصال المُعدّل -->
+                <a href="tel:01201956858" class="contact-btn phone">
+                    <i class="fa-solid fa-phone"></i>
+                    اتصال: 01201956858
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>&copy; 2026 محمد مسعود. جميع الحقوق محفوظة | صُنع بشغف لطلبة حاسبات</p>
+    </footer>
+
+</body>
+</html>
